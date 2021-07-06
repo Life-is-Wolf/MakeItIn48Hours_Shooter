@@ -13,6 +13,9 @@ public class Client : MonoBehaviour
     public Transform Player;
     public Transform PlayerPrefab;
 
+    public Minimap Map;
+    public Transform Players;
+
     public int PlayerID = 0;
     public string PlayerName = "{ NAME }";
 
@@ -29,6 +32,8 @@ public class Client : MonoBehaviour
 
     void Start()
     {
+        Players = transform.GetChild(0);
+
         System.Random rnd = new System.Random();
         PlayerID = rnd.Next(1, 99999999);
         PlayerName = rnd.Next(1, 99999999).ToString();
@@ -61,17 +66,23 @@ public class Client : MonoBehaviour
 
         GameObject plr = GameObject.Find(Name);
 
+        print(_newPlayerName);
+
         if (Name != PlayerName)
         {
             if (!GameObject.Find(Name))
             {
-                GameObject obj = Instantiate(PlayerPrefab, position, Quaternion.identity).gameObject;
+                GameObject obj = Instantiate(PlayerPrefab, Players).gameObject;
                 obj.name = _newPlayerName;
+
+                Map.AddNewPlayer(_newPlayerName, true);
             }
             else
             {
-                GameObject obj = GameObject.Find(_newPlayerName).gameObject;
+                GameObject obj = GameObject.Find(_newPlayerName);
                 obj.transform.position = position;
+
+                Map.ChangePosition(position, _newPlayerName);
             }
         }
     }
@@ -117,12 +128,6 @@ public class Client : MonoBehaviour
         }
 
         print(client.Available);
-
-        if (client.Available > 0)
-        {
-            print("failed");
-            Thread.CurrentThread.Abort();
-        }    
 
         client.EnableBroadcast = true;
         //[] receivedData = client.Receive(ref ep);
@@ -174,6 +179,8 @@ public class Client : MonoBehaviour
 
             _oldPosition = playerPosition;
 
+            print(client.Available);
+
             if (client.Available > 0)
             {
                 byte[] receivedData = client.Receive(ref serverEP);
@@ -186,6 +193,8 @@ public class Client : MonoBehaviour
                     try
                     {
                         receivedPData = JsonUtility.FromJson<PlayerData>(Encoding.ASCII.GetString(receivedData));
+
+                        print(receivedPData.Name);
 
                         lock (_newPlayerName)
                         {

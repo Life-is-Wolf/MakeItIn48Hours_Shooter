@@ -14,9 +14,9 @@ public class Minimap : MonoBehaviour
     public GameObject PlayerDot;
     public GameObject EnemyDot;
 
-    public List<Vector2> PlayerPosition = new List<Vector2>();
+    //public List<Vector2> PlayerPosition = new List<Vector2>();
 
-    private List<GameObject> _instances = new List<GameObject>();
+    private Dictionary<string, GameObject> _instances = new Dictionary<string, GameObject>();
     private GameObject _playerDotInstance;
     void Start()
     {
@@ -30,14 +30,14 @@ public class Minimap : MonoBehaviour
         _playerDotInstance.transform.localPosition = new Vector2(Player.position.x * Offset, Player.position.z * Offset);
     }
 
-    public void AddNewPlayer()
+    public void AddNewPlayer(string name, bool isEnemy)
     {
         GameObject enemy = Instantiate(EnemyDot, this.MinimapImage.transform);
-        _instances.Add(enemy);
+        _instances.Add(name, enemy);
     }
 
-    public void ChangePosition(Vector3 position, int id)
+    public void ChangePosition(Vector3 position, string name)
     {
-        _instances[id].transform.localPosition = new Vector2(position.x * Offset, position.z * Offset);
+        _instances[name].transform.localPosition = new Vector2(position.x * Offset, position.z * Offset);
     }
 }
