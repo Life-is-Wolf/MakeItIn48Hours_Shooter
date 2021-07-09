@@ -24,7 +24,7 @@ public class ConsoleManager : MonoBehaviour
     [System.Obsolete]
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.BackQuote) && !_isConsoleOpen)
+        if (Input.GetKeyDown(KeyCode.F1) && !_isConsoleOpen)
         {
             ConsoleCanvas.active = FonForConsole.active =  _isConsoleOpen = true;
             Cursor.lockState = CursorLockMode.None;
@@ -33,7 +33,7 @@ public class ConsoleManager : MonoBehaviour
             InputField.ActivateInputField();
             InputField.Select();
         }
-        else if (Input.GetKeyDown(KeyCode.BackQuote) && _isConsoleOpen)
+        else if (Input.GetKeyDown(KeyCode.F1) && _isConsoleOpen)
         {
             ConsoleCanvas.active = FonForConsole.active = _isConsoleOpen = false;
             Cursor.lockState = CursorLockMode.Locked;
