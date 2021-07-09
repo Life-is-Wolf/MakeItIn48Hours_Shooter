@@ -5,7 +5,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Console : MonoBehaviour
+public class ConsoleManager : MonoBehaviour
 {
     public GameObject ConsoleCanvas;
     public GameObject FonForConsole;
@@ -41,7 +41,7 @@ public class Console : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Return))
         {
-            MessageSend();
+            if(_isConsoleOpen) MessageSend();
         }
     }
     public void MessageSend()
