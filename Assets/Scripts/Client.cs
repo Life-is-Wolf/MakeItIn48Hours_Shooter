@@ -46,8 +46,8 @@ public class Client : MonoBehaviour
 
     private void OnApplicationQuit()
     {
-        client.Close();
-        _connectThread.Abort();
+        if (_connectThread.IsAlive)
+            _connectThread.Abort();
     }
 
     private void Update()
