@@ -58,6 +58,12 @@ public class ConsoleManager : MonoBehaviour
         InputField.ActivateInputField();
         InputField.Select();
     }
+    
+    public void LogSend(string owner,string text)
+    {
+        //\n\r + \n\r  - for enter
+        OutputText.text += $"\n\r\n\r[{DateTime.UtcNow}] [{owner}] {text}\n\r";
+    }
 
     private void CommandsExecuting(string command, string originalMessage)
     {
