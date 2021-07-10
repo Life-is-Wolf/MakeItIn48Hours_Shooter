@@ -5,7 +5,7 @@ using UnityEngine;
 public class BulletData : MonoBehaviour
 {
     public int gunpowder;
-    public float size;
+    public Vector2 size;
     public bool empty;
     public GameObject obj;
 }

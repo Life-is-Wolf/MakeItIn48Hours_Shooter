@@ -2,8 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody))]
-public class WeaponManager : WeaponData
+public class PoolObjects : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
