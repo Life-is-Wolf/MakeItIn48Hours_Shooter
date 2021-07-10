@@ -18,7 +18,7 @@ public class WeaponSystemAddBullets : MonoBehaviour
     // Update is called once per frame
     void AddAllBullets()
     {
-        for (int x =0; x> manager.maxBulletCount; x++)
+        for (int x =0; x<manager.maxBulletCount; x++)
         {
             manager.AddBulet(new BulletData { empty = _empty, gunpowder = _gunpowder, size = _size, obj = _obj } );
         }
