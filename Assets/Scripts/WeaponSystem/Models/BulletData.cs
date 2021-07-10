@@ -6,5 +6,6 @@ public class BulletData : MonoBehaviour
 {
     public int gunpowder;
     public float size;
+    public bool empty;
     public GameObject obj;
 }
