@@ -5,15 +5,11 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class WeaponManager : WeaponData
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField]
+    private WeaponShopManager shopManager;
 
-    // Update is called once per frame
-    void Update()
+    private void Init()
     {
-        
+
     }
 }

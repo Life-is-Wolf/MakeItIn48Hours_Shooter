@@ -2,15 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WeaponShop : MonoBehaviour
+[RequireComponent(typeof(Rigidbody))]
+public class WeaponShopManager : MonoBehaviour
 {
     private List<BulletData> bullets = new List<BulletData>();
     [SerializeField]
-    private Vector2 bulletSize; // максимальный размер пули (в мм)
+    public Vector2 bulletSize; // максимальный размер пули (в мм)
     [SerializeField]
-    private float maxBulletCount; // максимальное количисто пуль
+    public float maxBulletCount; // максимальное количисто пуль
 
-    public uint networkId;
     public void Start()
     {
         Init();
@@ -20,13 +20,16 @@ public class WeaponShop : MonoBehaviour
     {
 
     }
-    public void AddBulets(List<BulletData> _bullets) { 
-        foreach (var item in _bullets) 
+
+    public void AddBulets(List<BulletData> _bullets)
+    {
+        foreach (var item in _bullets)
         {
-            bullets.Add(item); 
+            bullets.Add(item);
         }
     }
-    public void AddBulet(BulletData _bullet) {
+    public void AddBulet(BulletData _bullet)
+    {
         bullets.Add(_bullet);
     }
 
@@ -36,5 +39,5 @@ public class WeaponShop : MonoBehaviour
         var bullet = bullets[allBulletsCount];
         bullets.RemoveAt(allBulletsCount);
         return bullet;
-    }    
+    }
 }
